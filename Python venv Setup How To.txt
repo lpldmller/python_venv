@@ -1,0 +1,38 @@
+HOW TO SETUP PYTHON WITH POWERSHELL AND VISUAL STUDIO CODE ON MICROSOFT
+-----------------------------------------------------------------------
+author = leopold mueller
+version = 1.1
+
+#0 Install Python and VS Code from Microsoft Store
+	- Start VS Code and install extensions for Python and Jupyter (ctrl+shift+x)
+
+#1 Create project directory for project files and virtual environment (venv)
+	- Do not use spaces in naming but rather "_" for example
+	- Do not change names in path of directory later, so choose good names long-term
+
+#2 Inside project directory: shift+rclick and start PowerShell in directory
+
+#3 Create new venv in PowerShell: python -m venv {name of venv}
+
+#4 Activate venv in PowerShell: . .\{name of venv}\Scripts\activate.ps1
+	- If active, next line in PowerShell starts with ({name of venv})
+	- If execution is disabled by System run in admin mode: powershell Set-ExecutionPolicy -ExecutionPolicy RemoteSigned
+	- To reactivate policy run afterwards: powershell Set-ExecutionPolicy Restricted 
+
+#5 Install necessary packages with pip in PowerShell: python -m pip install {name of package}
+	- Install package "ipykernel" for Jupyter to work inside VS Code
+	- Packages will only exist in venv
+	- For installation of specific version: python -m pip install {name of package}=={0.0.0} (to check availabale versions: pip index versions {name of package} 
+
+#6 Open VS Code and open project folder in the VS Code explorer (ctrl+shift+e)
+
+#7 In the folder, create new jupyter notebook file {file name}.ipynb and open it
+	- Select your venv as Python kernel for this notebook (button on the top right)
+
+#8 For future package installations in your venv, open terminal inside VS Code
+	- Make sure to select the PowerShell (if cmd is active, type ">Terminal: Select Default Profile" in searchbar)
+	- Activate your venv in the terminal as in #4
+	- Install packages as in #5
+
+(#9) Save and install favorite packages with PowerShell inside active venv: pip freeze > packages.txt
+	- Copy txt inside other venv to install packages: python -m pip install -r packages.txt
